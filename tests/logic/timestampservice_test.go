@@ -26,7 +26,7 @@ func TestGetSetTimeStamp_Expected(t *testing.T) {
 	}
 }
 
-func GetTimeStamp_Nil(t *testing.T) {
+func TestGetTimeStamp_Nil(t *testing.T) {
 	sut := logic.NewtimestampService()
 
 	if sut.GetTimeStamp() != nil {
