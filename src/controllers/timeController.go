@@ -17,12 +17,12 @@ func NewTimeController() timeController {
 	return timeController{service: logic.NewtimestampService()}
 }
 
-func (tc *timeController) ServeHTTP(w http.ResponseWriter, req *http.Request) {
-	if req.Header.Get("Content-Type") != "text/plain" {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("invalid content type"))
-		return
-	}
+func (tc timeController) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	// if req.Header.Get("Content-Type") != "text/plain" {
+	// 	w.WriteHeader(http.StatusBadRequest)
+	// 	w.Write([]byte("invalid content type"))
+	// 	return
+	// }
 
 	switch req.Method {
 	case "POST":

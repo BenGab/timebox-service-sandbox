@@ -1,7 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"net/http"
+
+	controller "github.com/bengab/timebox-service/src/controllers"
+)
 
 func main() {
-	fmt.Println("Hello, Gopher")
+	ctrl := controller.NewTimeController()
+
+	http.Handle("/api/timestamp", ctrl)
+	http.ListenAndServe(":8088", nil)
 }
