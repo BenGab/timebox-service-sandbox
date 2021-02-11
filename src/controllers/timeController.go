@@ -18,11 +18,11 @@ func NewTimeController() timeController {
 }
 
 func (tc timeController) ServeHTTP(w http.ResponseWriter, req *http.Request) {
-	// if req.Header.Get("Content-Type") != "text/plain" {
-	// 	w.WriteHeader(http.StatusBadRequest)
-	// 	w.Write([]byte("invalid content type"))
-	// 	return
-	// }
+	if req.Header.Get("Content-Type") != "text/plain" {
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("invalid content type"))
+		return
+	}
 
 	switch req.Method {
 	case "POST":
