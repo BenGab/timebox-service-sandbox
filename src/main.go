@@ -3,7 +3,9 @@ package main
 import (
 	"net/http"
 	"sync"
+	"time"
 
+	"github.com/bengab/timebox-service/src/client"
 	controller "github.com/bengab/timebox-service/src/controllers"
 )
 
@@ -22,5 +24,13 @@ func main() {
 
 	go startWebService(wg)
 
+	store := client.NewStore("http://localhost:8088/api/timestamp")
+	stopChan := make(chan struct{})
+	go store.Start(stopChan)
+
+	store.WriteChan <- time.Now()
+	go store.ReadTimeFromServer()
+
 	wg.Wait()
+	stopChan <- struct{}{}
 }

@@ -1,17 +1,14 @@
 package logic
 
-import "time"
-
 type TimestampService struct {
-	data *time.Time
+	data *string
 }
 
-func (ts *TimestampService) SetTimestamp(time time.Time) {
-	t := time
-	ts.data = &t
+func (ts *TimestampService) SetTimestamp(time string) {
+	ts.data = &time
 }
 
-func (ts *TimestampService) GetTimeStamp() *time.Time {
+func (ts *TimestampService) GetTimeStamp() *string {
 	return ts.data
 }
 

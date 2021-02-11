@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -32,7 +33,11 @@ func (tc timeController) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			return
 		}
-		time, err := time.Parse(time.RFC3339, string(b))
+
+		str := string(b)
+
+		fmt.Println("BODY")
+		fmt.Println(str)
 
 		if err != nil {
 			log.Fatal("invalid body")
@@ -40,7 +45,7 @@ func (tc timeController) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 			return
 		}
 
-		tc.service.SetTimestamp(time)
+		tc.service.SetTimestamp(str)
 		w.WriteHeader(http.StatusNoContent)
 
 	case "GET":
@@ -49,7 +54,7 @@ func (tc timeController) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 		if timestr == nil {
 			w.Write([]byte(time.Now().String()))
 		} else {
-			w.Write([]byte(timestr.String()))
+			w.Write([]byte(*timestr))
 		}
 	}
 }

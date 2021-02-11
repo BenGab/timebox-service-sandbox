@@ -9,7 +9,7 @@ import (
 
 func TestSetTimeStamp_NotNil(t *testing.T) {
 	sut := logic.NewtimestampService()
-	sut.SetTimestamp(time.Now())
+	sut.SetTimestamp(time.Now().String())
 
 	if sut.GetTimeStamp() == nil {
 		t.Error("Timestamp is still nil")
@@ -19,9 +19,9 @@ func TestSetTimeStamp_NotNil(t *testing.T) {
 func TestGetSetTimeStamp_Expected(t *testing.T) {
 	sut := logic.NewtimestampService()
 	time := time.Now()
-	sut.SetTimestamp(time)
+	sut.SetTimestamp(time.String())
 
-	if *sut.GetTimeStamp() != time {
+	if *sut.GetTimeStamp() != time.String() {
 		t.Error("GettimeStamp()")
 	}
 }
