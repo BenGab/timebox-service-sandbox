@@ -2,19 +2,19 @@ package logic
 
 import "time"
 
-type timestampService struct {
+type TimestampService struct {
 	data *time.Time
 }
 
-func (ts *timestampService) SetTimestamp(time time.Time) {
+func (ts *TimestampService) SetTimestamp(time time.Time) {
 	t := time
 	ts.data = &t
 }
 
-func (ts *timestampService) GetTimeStamp() *time.Time {
+func (ts *TimestampService) GetTimeStamp() *time.Time {
 	return ts.data
 }
 
-func NewtimestampService() timestampService {
-	return timestampService{data: nil}
+func NewtimestampService() TimestampService {
+	return TimestampService{data: nil}
 }
